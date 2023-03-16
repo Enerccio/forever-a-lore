@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+                            http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+                            http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+
+    <context:property-placeholder location="classpath*:META-INF/spring/fas.properties,
+        classpath*:META-INF/build-info/build-info.properties,
+        classpath*:git.properties" ignore-unresolvable="true" ignore-resource-not-found="true" />
+
+    <context:component-scan base-package="com.en_circle"/>
+
+    <context:annotation-config/>
+    <context:spring-configured/>
+
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
+
+    <tx:annotation-driven/>
+
+    <!-- Database -->
+    <bean id="ds" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" >
+        <property name="driverClassName" value="${db.driverClassName}"/>
+        <property name="url" value="${db.url}"/>
+        <property name="username" value="${db.username}" />
+        <property name="password" value="${db.password}" />
+        <property name="testOnBorrow" value="true"/>
+        <property name="testOnReturn" value="true"/>
+        <property name="testWhileIdle" value="true"/>
+        <property name="timeBetweenEvictionRunsMillis" value="1800000"/>
+        <property name="numTestsPerEvictionRun" value="3"/>
+        <property name="minEvictableIdleTimeMillis" value="1800000"/>
+        <property name="validationQuery" value="SELECT 1"/>
+        <property name="initialSize" value="10" />
+        <property name="maxActive" value="20" />
+    </bean>
+
+    <bean id="emf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="persistenceUnitName" value="pu"/>
+        <property name="dataSource" ref="ds"/>
+    </bean>
+
+    <bean id="em" class="org.springframework.orm.jpa.support.SharedEntityManagerBean">
+        <property name = "entityManagerFactory" ref="emf"/>
+    </bean>
+
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager" >
+        <property name="entityManagerFactory" ref="emf"/>
+        <qualifier value="common" />
+    </bean>
+
+    <!-- Entities -->
+    <bean id="settingsRepository" class="com.en_circle.fas.model.repository.SettingsRepository">
+        <property name="entityManager" ref="em" />
+    </bean>
+
+    <bean id="settingsService" class="com.en_circle.fas.model.service.SettingsService">
+        <property name="repository" ref="settingsRepository" />
+    </bean>
+
+    <bean id="gameRepository" class="com.en_circle.fas.model.repository.GameRepository">
+        <property name="entityManager" ref="em" />
+    </bean>
+
+    <bean id="gameService" class="com.en_circle.fas.model.service.GameService">
+        <property name="repository" ref="gameRepository" />
+    </bean>
+
+    <!-- UI -->
+    <bean id="sessionPoint" class="com.en_circle.fas.ui.session.SessionPoint" scope="session">
+        <aop:scoped-proxy />
+    </bean>
+
+    <bean id="loc" class="com.en_circle.fas.ui.lang.Localization">
+
+    </bean>
+</beans>

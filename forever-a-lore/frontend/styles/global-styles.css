@@ -1,0 +1,7 @@
+/* Define enhanced dialog content height. By default height of the content is undefined,
+   which case problems with components like grid, layouts, etc.
+ */
+
+vcf-enhanced-dialog-overlay .enhanced-dialog-content {
+    height: 100%;
+}
