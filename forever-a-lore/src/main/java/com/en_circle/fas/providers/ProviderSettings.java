@@ -1,6 +1,8 @@
 package com.en_circle.fas.providers;
 
-public interface ProviderSettings {
+import java.io.Serializable;
+
+public interface ProviderSettings extends Serializable {
 
 
 

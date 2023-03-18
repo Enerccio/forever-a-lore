@@ -4,6 +4,7 @@
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
         <class>com.en_circle.fas.model.entities.Settings</class>
+        <class>com.en_circle.fas.model.entities.Character</class>
         <class>com.en_circle.fas.model.entities.Game</class>
 
 		<exclude-unlisted-classes>true</exclude-unlisted-classes> 

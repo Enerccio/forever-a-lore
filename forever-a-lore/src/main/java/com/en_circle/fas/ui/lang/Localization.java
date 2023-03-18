@@ -1,6 +1,7 @@
 package com.en_circle.fas.ui.lang;
 
 import com.en_circle.fas.ui.session.SessionPoint;
+import com.vaadin.flow.component.upload.UploadI18N;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.HashMap;
@@ -24,6 +25,16 @@ public class Localization implements LocalizationComponent {
             component = english;
         }
         return component.getValue(LOC);
+    }
+
+    @Override
+    public UploadI18N getUploadLocalization() {
+        Locale locale = sessionPoint.getLocale();
+        LocalizationComponent component = byLocale.get(locale);
+        if (component == null) {
+            component = english;
+        }
+        return component.getUploadLocalization();
     }
 
 }

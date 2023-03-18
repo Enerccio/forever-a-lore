@@ -4,7 +4,7 @@ import com.en_circle.fas.conf.SupportedAIs;
 import com.en_circle.fas.providers.ProviderSettings;
 
 import javax.persistence.*;
-import java.util.Map;
+import java.util.HashMap;
 
 import static com.en_circle.fas.model.entities.Settings.ENTITY_NAME;
 
@@ -20,8 +20,7 @@ public class Settings extends JPAEntity {
     private SupportedAIs selectedAIProvider;
 
     @Lob
-    @Basic
-    private Map<String, ProviderSettings> providerSettings;
+    private HashMap<String, ProviderSettings> providerSettings;
 
     public boolean isGlobal() {
         return global;
@@ -39,11 +38,11 @@ public class Settings extends JPAEntity {
         this.selectedAIProvider = selectedAIProvider;
     }
 
-    public Map<String, ProviderSettings> getProviderSettings() {
+    public HashMap<String, ProviderSettings> getProviderSettings() {
         return providerSettings;
     }
 
-    public void setProviderSettings(Map<String, ProviderSettings> providerSettings) {
+    public void setProviderSettings(HashMap<String, ProviderSettings> providerSettings) {
         this.providerSettings = providerSettings;
     }
 }

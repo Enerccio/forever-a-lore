@@ -71,6 +71,14 @@
         <property name="repository" ref="gameRepository" />
     </bean>
 
+    <bean id="characterRepository" class="com.en_circle.fas.model.repository.CharacterRepository">
+        <property name="entityManager" ref="em" />
+    </bean>
+
+    <bean id="characterService" class="com.en_circle.fas.model.service.CharacterService">
+        <property name="repository" ref="characterRepository" />
+    </bean>
+
     <!-- UI -->
     <bean id="sessionPoint" class="com.en_circle.fas.ui.session.SessionPoint" scope="session">
         <aop:scoped-proxy />

@@ -14,6 +14,8 @@ public class Main implements WebApplicationInitializer {
     @Override
     public void onStartup(ServletContext servletContext) {
         initRootApplicationContext(servletContext);
+
+        addServlet("charimg", "/charimg/*", "/WEB-INF/classes/META-INF/spring/charimg-context.xml", servletContext);
     }
 
     private void addServlet(String servletName, String servletMapping, String configLocation, ServletContext servletContext) {

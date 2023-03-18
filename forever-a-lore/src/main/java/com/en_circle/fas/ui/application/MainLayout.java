@@ -1,7 +1,7 @@
 package com.en_circle.fas.ui.application;
 
 import com.en_circle.fas.ui.application.chardb.CharacterDB;
-import com.en_circle.fas.ui.application.settings.Settings;
+import com.en_circle.fas.ui.application.settings.SettingsLayout;
 import com.en_circle.fas.ui.application.stories.Stories;
 import com.en_circle.fas.ui.lang.LOC;
 import com.en_circle.fas.ui.lang.Localization;
@@ -35,6 +35,7 @@ public class MainLayout extends AppLayout {
     private final Map<Tab, LayoutContent> contents = new HashMap<>();
 
     public void create() throws Exception {
+
         DrawerToggle toggle = new DrawerToggle();
 
         H1 title = new H1(loc.getValue(LOC.TITLE));
@@ -48,7 +49,7 @@ public class MainLayout extends AppLayout {
         characterDb = new Tab(VaadinIcon.USER.create(), new Label(loc.getValue(LOC.CHARACTER_DB_TAB)));
         contents.put(characterDb, new CharacterDB());
         settings = new Tab(VaadinIcon.COGS.create(), new Label(loc.getValue(LOC.SETTINGS_TAB)));
-        contents.put(settings, new Settings());
+        contents.put(settings, new SettingsLayout());
         tabs.add(stories, characterDb, settings);
 
         tabs.addSelectedChangeListener(event -> loadContent(event.getSelectedTab(), event.getPreviousTab()));

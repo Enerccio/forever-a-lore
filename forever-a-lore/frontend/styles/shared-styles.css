@@ -1,1 +1,13 @@
 @import "global-styles.css";
+
+.toolbar {
+    background-color: #52618d;
+}
+
+.borderPanel {
+    border: gainsboro solid 1px;
+}
+
+.borderPanelInner {
+    border: gainsboro dotted 1px;
+}
