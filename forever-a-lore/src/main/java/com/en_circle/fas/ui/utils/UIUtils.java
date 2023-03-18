@@ -1,7 +1,7 @@
 package com.en_circle.fas.ui.utils;
 
 import com.en_circle.fas.ui.dialogs.ErrorDialog;
-import com.en_circle.fas.ui.lang.L;
+import com.en_circle.fas.ui.lang.LOC;
 import com.en_circle.fas.ui.lang.Localization;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,8 +17,8 @@ public class UIUtils {
     }
 
     public static void internalServerError(Localization loc, Throwable cause) {
-        log.error(loc.getValue(L.ERR_INTERNAL_SERVER_ERROR), cause);
-        ErrorDialog errorDialog = new ErrorDialog(loc.getValue(L.ERR_INTERNAL_SERVER_ERROR), cause);
+        log.error(loc.getValue(LOC.ERR_INTERNAL_SERVER_ERROR), cause);
+        ErrorDialog errorDialog = new ErrorDialog(loc.getValue(LOC.ERR_INTERNAL_SERVER_ERROR), cause);
         errorDialog.open();
     }
 

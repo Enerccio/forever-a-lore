@@ -17,13 +17,13 @@ public class Localization implements LocalizationComponent {
     private final LocalizationComponent english = new LocalizationEnglish();
 
     @Override
-    public String getValue(L l) {
+    public String getValue(LOC LOC) {
         Locale locale = sessionPoint.getLocale();
         LocalizationComponent component = byLocale.get(locale);
         if (component == null) {
             component = english;
         }
-        return component.getValue(l);
+        return component.getValue(LOC);
     }
 
 }

@@ -1,7 +1,7 @@
 package com.en_circle.fas.ui.session;
 
+import com.en_circle.fas.ui.application.MainLayout;
 import com.en_circle.fas.ui.lang.Localization;
-import com.en_circle.fas.ui.layout.MainLayout;
 import com.en_circle.fas.ui.utils.UIUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 

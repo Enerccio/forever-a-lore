@@ -1,11 +1,12 @@
 package com.en_circle.fas.ui.dialogs;
 
 import com.en_circle.fas.ui.components.ScrollPanel;
-import com.en_circle.fas.ui.lang.L;
+import com.en_circle.fas.ui.lang.LOC;
 import com.en_circle.fas.ui.lang.Localization;
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.html.H2;
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
@@ -39,10 +40,16 @@ public class ErrorDialog {
         scrollPanel.setSizeFull();
         scrollPanel.add(new Text(stackTrace));
 
-        dialog.add(new H2(loc.getValue(L.GENERAL_ERROR)));
-        dialog.add(new Text(message));
-        dialog.add(scrollPanel);
+        VerticalLayout vl = new VerticalLayout();
+        vl.setSpacing(true);
+        vl.setMargin(true);
+        vl.setSizeFull();
+        vl.add(new H2(loc.getValue(LOC.GENERAL_ERROR)));
+        vl.add(new Text(message));
+        vl.add(scrollPanel);
+        vl.expand(scrollPanel);
 
+        dialog.add(vl);
         dialog.open();
     }
 }

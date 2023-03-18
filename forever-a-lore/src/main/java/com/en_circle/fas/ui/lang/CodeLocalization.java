@@ -7,7 +7,7 @@ import java.util.Map;
 
 public abstract class CodeLocalization implements LocalizationComponent {
 
-    private final Map<L, String> localizations = new HashMap<>();
+    private final Map<LOC, String> localizations = new HashMap<>();
 
     public CodeLocalization() {
         loadLocalization();
@@ -15,17 +15,17 @@ public abstract class CodeLocalization implements LocalizationComponent {
 
     protected abstract void load();
 
-    protected void setValue(L l, String value) {
-        localizations.put(l, value);
+    protected void setValue(LOC LOC, String value) {
+        localizations.put(LOC, value);
     }
 
     private void loadLocalization() {
         load();
 
         List<String> missing = new ArrayList<>();
-        for (L l : L.values()) {
-            if (!localizations.containsKey(l)) {
-                missing.add(l.name());
+        for (LOC LOC : LOC.values()) {
+            if (!localizations.containsKey(LOC)) {
+                missing.add(LOC.name());
             }
         }
 
@@ -35,7 +35,7 @@ public abstract class CodeLocalization implements LocalizationComponent {
     }
 
     @Override
-    public String getValue(L l) {
-        return localizations.get(l);
+    public String getValue(LOC LOC) {
+        return localizations.get(LOC);
     }
 }
